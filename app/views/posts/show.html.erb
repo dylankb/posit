@@ -1,0 +1,28 @@
+<% if logged_in? %>
+  <p class="pull-right">
+    [<%= link_to 'Edit this post', edit_post_path(@post) %>]
+  </p>
+<% end %>
+
+<%= render 'shared/content_title', title: @post.title %>
+<%= render 'post', post: @post %>
+
+<hr/>
+<% if logged_in? %>
+  <%= form_for [@post, @comment] do |f| %>
+    <% if @comment.errors.any? %>
+      <%= render 'shared/errors', form_object: @comment %>
+    <% end %>
+    <div class="control-group">
+      <%= f.label(:body, "Leave a comment") %>
+      <%= f.text_area :body, rows: 4, class: 'span4' %>
+    </div>
+    <%= f.submit "Comment", class: "btn btn-info" %>
+    <hr/>
+  <% end %>
+<% end %>
+
+<p>Comments:</p>
+<% @post.comments.each do |comment| %>
+  <%= render 'comments/comment', comment: comment %>
+<% end %>
