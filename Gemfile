@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby '2.1.10'
 
 gem 'rails', '4.0.0'
 gem 'sass-rails', '~> 4.0.0'
@@ -29,6 +28,3 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
-
-# Added at 2017-11-30 15:51:02 -0800 by Dylan:
-gem "minitest", "~> 4.7"

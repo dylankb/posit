@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by(slug: params[:post_id])
     @category = @post.categories.new(category_params)
 
     if @category.save
@@ -18,7 +18,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
+    @category = Category.find_by(slug: params[:id])
   end
 
   private

@@ -23,6 +23,7 @@
 <% end %>
 
 <p>Comments:</p>
-<% @post.comments.each do |comment| %>
+<!-- .reload ensures that comments that did not pass validation but are in memory are not displayed -->
+<% @post.reload.comments.each do |comment| %>
   <%= render 'comments/comment', comment: comment %>
 <% end %>
