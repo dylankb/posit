@@ -38,7 +38,7 @@ class PostsController < ApplicationController
   end
 
   def vote
-    @vote = Vote.create(voter: current_user, voteable: @post, vote: params[:vote])
+    vote = Vote.create(voter: current_user, voteable: @post, vote: params[:vote])
 
     if vote.valid?
       flash[:notice] = "Your vote was tallied"
