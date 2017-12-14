@@ -18,6 +18,6 @@
       on <%= link_to comment.post.title, post_path(comment.post) %>
     <% end %>
     <p>
-      <span class="quiet">by <%= link_to comment.commenter.username, '' %></span> <small>at <%= format_date(comment.created_at) %></small>
+      <span class="quiet">by <%= link_to comment.commenter.username, user_path(comment.commenter) %></span> <small>at <%= format_date(comment.created_at) %></small>
   </div>
 </div>
