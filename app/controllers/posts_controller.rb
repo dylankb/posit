@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :vote]
   before_action :require_user, except: [:show, :index, :vote]
+  before_action :require_creator, only: [:edit, :update]
 
   def index
     @posts = Post.all
@@ -62,5 +63,11 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :url, :description, category_ids: [])
+  end
+
+  def require_creator
+    return if logged_in? && (@post.creator == current_user || current_user.admin?)
+    permission_error = 'You are not the post\'s creator.'
+    access_denied(permission_error)
   end
 end
