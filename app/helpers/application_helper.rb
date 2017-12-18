@@ -4,7 +4,11 @@ module ApplicationHelper
   end
 
   def format_date(date)
-    date.strftime("%m/%d/%Y %l:%M%P %Z")
+    if logged_in? && !current_user.time_zone.blank?
+      date.in_time_zone(current_user.time_zone).strftime("%m/%d/%Y %l:%M%P %Z")
+    else
+      date.strftime("%m/%d/%Y %l:%M%P %Z")
+    end
   end
 
   def ajax_flash_message(element_id)
